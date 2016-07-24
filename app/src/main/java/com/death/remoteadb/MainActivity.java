@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!Utility.hasRootPermission()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
-            builder.setMessage("This app requires rooted device").setCancelable(true)
+            builder.setMessage("This app requires rooted device").setCancelable(false)
                     .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             MainActivity.this.finish();
@@ -62,16 +62,10 @@ public class MainActivity extends AppCompatActivity {
         WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
         if (!wifi.isWifiEnabled()){
             Utility.WiFidialog(this);
-        }
-        if (!Utility.checkWifiState(this)) {
             wifiState = false;
             Utility.saveWiFiState(this, wifiState);
-            if (Utility.prefsWiFiOn(this)) {
-                Utility.enableWiFi(this, true);
-            } else {
-                Utility.WiFidialog(this);
-            }
-        } else {
+        }
+        else if (wifi.isWifiEnabled()) {
             wifiState = true;
             Utility.saveWiFiState(this, wifiState);
         }
