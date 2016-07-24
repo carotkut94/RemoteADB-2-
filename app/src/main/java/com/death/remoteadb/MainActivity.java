@@ -3,6 +3,7 @@ package com.death.remoteadb;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.wifi.WifiManager;
@@ -11,6 +12,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
         this.tv1 = (TextView) findViewById(R.id.tv1);
         this.tv2 = (TextView) findViewById(R.id.tv2);
         this.imageView = (ImageView)  findViewById(R.id.imageView);
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!Utility.hasRootPermission()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
             builder.setMessage("This app requires rooted device").setCancelable(true)
                     .setPositiveButton("Close", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -127,11 +131,34 @@ public class MainActivity extends AppCompatActivity {
         super.onConfigurationChanged(newConfig);
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.meun_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this,About.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void updateState() {
         if (mState) {
             tv1.setText("Remote ADB is On");
             try {
-                tv2.setText("adb connect " + Utility.getWifiIp(this)+":"+Utility.prefsAutoConPort(this));
+                tv2.setText("Type this command in Terminal/CMD\nadb connect " + Utility.getWifiIp(this)+":"+Utility.prefsAutoConPort(this));
                 iv_button.setText("Turn ADB off");
             } catch (Exception e) {
                 tv2.setText("adb connect ?");

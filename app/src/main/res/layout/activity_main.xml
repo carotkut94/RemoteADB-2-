@@ -33,6 +33,7 @@
         android:textColor="@android:color/holo_orange_dark"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:id="@+id/tv2"
         android:layout_marginBottom="44dp" />
