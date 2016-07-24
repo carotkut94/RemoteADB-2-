@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.death.remoteadb.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remote ADB is off"
+        android:textSize="20dp"
+        android:id="@+id/tv1"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_above="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="44dp" />
+
+    <ImageView
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:src="@drawable/bug_off"
+        android:layout_centerInParent="true"
+        android:id="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-------------------"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv2"
+        android:layout_marginBottom="44dp" />
+
+    <Button
+        android:theme="@style/AppTheme.Button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="START ADB"
+        android:textSize="25sp"
+        android:padding="15dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/button3"
+        android:enabled="true" />
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Remote ADB</string>
+    <string name="noti_title">Started</string>
+
+    <string name="pref_vibrate_key">key_vibrate</string>
+    <string name="pref_sound_key">key_sound</string>
+    <string name="pref_noti_key">key_noti</string>
+    <string name="pref_haptic_key">key_haptic</string>
+    <string name="pref_wifi_on_key">key_wifi_on</string>
+    <string name="pref_wifi_off_key">key_wifi_off</string>
+    <string name="pref_onboot_key">key_onboot</string>
+
+    <string name="pref_autocon_key">key_autocon</string>
+    <string name="pref_autoconip_key">key_autoconip</string>
+    <string name="pref_autoconport_key">key_autoconport</string>
+    <string name="pref_screenon_key">key_screenon</string>
+</resources>
