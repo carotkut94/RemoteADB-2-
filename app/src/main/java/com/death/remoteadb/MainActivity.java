@@ -71,21 +71,31 @@ public class MainActivity extends AppCompatActivity {
         }
         this.iv_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                if (Utility.prefsHaptic(MainActivity.this))
-                    vib.vibrate(45);
-                try {
-                    if (!mState) {
-                        Utility.adbStart(MainActivity.this);
-                    } else {
-                        Utility.adbStop(MainActivity.this);
-                    }
-                    updateState();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+                WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+                if (!wifi.isWifiEnabled()){
+                    Utility.WiFidialog(MainActivity.this);
+                    wifiState = false;
+                    Utility.saveWiFiState(MainActivity.this, wifiState);
                 }
+                else if (wifi.isWifiEnabled()) {
+                    wifiState = true;
+                    Utility.saveWiFiState(MainActivity.this, wifiState);
+                    Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    if (Utility.prefsHaptic(MainActivity.this))
+                        vib.vibrate(45);
+                    try {
+                        if (!mState) {
+                            Utility.adbStart(MainActivity.this);
+                        } else {
+                            Utility.adbStop(MainActivity.this);
+                        }
+                        updateState();
 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
