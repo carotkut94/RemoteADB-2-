@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         }
         this.iv_button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
                 WifiManager wifi = (WifiManager)getSystemService(Context.WIFI_SERVICE);
                 if (!wifi.isWifiEnabled()){
                     Utility.WiFidialog(MainActivity.this);
